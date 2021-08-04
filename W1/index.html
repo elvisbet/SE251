@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE251|W1</title>
+    <meta name="description" content="Week 1">
+    <meta name="author" content="Allen J. Gawlowicz">
+
+</head>
+
+<body>
+    <script>
+        alert("Hello world!");
+    </script>
+
+</body>
+
+<p id="demo1------------------------------>"></p>
+<script type="text/javascript">
+    var a = "Pee Nutt Butt her";
+    var b = 4;
+    var c = Boolean(9 < 10);
+
+    console.log("a: ", typeof a);
+    console.log("b: ", typeof b);
+    console.log("c: ", typeof c);
+
+    typeof "Pee Nutt Butt her" + "<br>" +
+    typeof 4 + "<br>" +
+        typeof Boolean(9 < 10)
+</script>
+
+
+<p id="demo2------------------------------>"></p>
+<script>
+    var x = myFunction(4, 3);
+
+    function myFunction(p1, p2) {
+        return p1 * p2;
+    }
+
+    console.log("4*3= ", x);
+</script>
+
+
+<p id="demo3------------------------------>"></p>
+<script>
+    var myarray = []
+
+
+
+    for (var i = 0; i < 100; i++) {
+
+        myarray[i] = i + 1
+
+    }
+    console.dir(myarray);
+    //
+    for (var i = 0; i < myarray.length; i++) {
+        if (myarray[i] % 2 === 0) {
+            myarray[i] = "fizz"
+        }
+
+    }
+    for (var i = 0; i < myarray.length; i++) {
+        if (myarray[i] % 3 === 0) {
+            myarray[i] = "buzz"
+
+        }
+
+
+    }
+    for (var i = 0; i < myarray.length; i++) {
+        if (myarray[i] % 3 === 0 && myarray[i] % 2 === 0) {
+            myarray[i] = "fizz buzz"
+
+        }
+
+
+    }
+    console.log(myarray)
+
+    for (var i = 0; i < myarray.length; i++) {
+        myarray[i] = {
+            index: i + 1,
+            label: undefined
+        }
+        if (myarray[i].index % 2 === 0) {
+            myarray[i].label = "fizz"
+        }
+        if (myarray[i].index % 3 === 0) {
+            myarray[i].label = "buzz"
+        }
+        if (myarray[i].index % 3 === 0 && myarray[i].index % 2 === 0) {
+            myarray[i].label = "fizz buzz"
+
+        }
+
+
+    }
+
+    console.log(myarray);
+    //
+
+    //
+    var body = document.querySelector("body")
+    var str = ""
+
+    for (var i = 0; i < myarray.length; i++) {
+
+
+        for (boogers in myarray[i]) {
+            str += "<p>" + boogers + ":" + myarray[i][boogers] + "</p>"
+            console.log(myarray[i][boogers])
+        }
+    }
+
+    body.innerHTML = str
+    console.log(myarray);
+    // END OF 5
+
+    //DEMO6
+    for (var i = 0; i < myarray.length; i++) {
+        var myobject = {
+            index: myarray[i].index,
+            label: myarray[i].label
+        }
+
+    }
+    console.log(myobject)
+
+
+    console.log(myobject = {
+        label: "fizz",
+        index: [i]
+    })
+</script>
