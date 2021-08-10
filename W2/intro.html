@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    var array =[
+		{first:"Jason", last:"Vorhees", credit:"Friday the 13th"},
+		{first:"Freddy", last:"Krueger", credit:"A Nightmare on Elm Street" },
+		{first:"Roger", last:"Rabbit", credit:"Who Framed Roger Rabbit" },
+		{first:"Kevin", last:"McCallister", credit:"Home Alone" },
+		{first:"Godzilla", last:"King of The Monsters", credit:"Godzilla" },
+		{first:"Buzz", last:"Lightyear", credit:"Toy Story" },
+		{first:"Marion", last:"Cobretti", credit:"Cobra" }
+	]
+    var body = document.querySelector(`body`);
+    var str=""
+    for(var i = 0; i < array.length; i++){
+    str += "<div id='" + i + "' class='border'>"
+
+            str  += "<p>";
+            str += array[i].first+" " 
+            str += array[i].last+" "
+            str += array[i].credit+" "
+            str  +="</p>"
+            str+= "</div>"
+        
+}
+body.innerHTML = str;
+   </script> 
+</html>
