@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    body = document.querySelectorAll(`body`)
+    window.addEventListener(`load`, (e) => {
+        var input = document.querySelector(`#textbox input`)
+        var submit = document.querySelector(`#button input`)
+        for (let i = 0; i < 100; i++) {
+            var min = 0
+            var max = 100
+
+            function randomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        }
+        var table = []
+        submit.addEventListener(`click`, (e) => {
+            console.log('success!!')
+            for (var i = 0; i < input.value; i++) {
+                table[i] = new Array()
+                for (v in table) {
+                    table[i][v] = (randomNumber(min, max));
+                    console.log(table[i][v])
+                }
+                for (var i = 0; i < 2; i++) {
+                    for (var v = 0; v < input.value; v++) {
+                        document.write(table[i][v] + " ");
+                    }
+                    document.write("<br>");
+                }
+                document.getElementById("results").innerHTML = table;
+            }
+        })
+    })
+</script>
+
+<body>
+    <form>
+        <div id="textbox">
+            <input type="text" placeholder="">
+        </div>
+        <div id="button">
+            <input type="button" value="Generate">
+        </div>
+        <table id="results">
+            <th>
+                <td>
+
+                </td>
+
+            </th>
+        </table>
+
+    </form>
+</body>
+
+</html>
