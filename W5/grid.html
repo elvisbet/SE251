@@ -8,27 +8,11 @@
     <title>Document</title>
 </head>
 <style>
-    td {
-        border-collapse: collapse;
-        PADDING-BOTTOM: 1px;
-        PADDING-TOP: 1px;
-        PADDING-LEFT: 2px;
-        PADDING-RIGHT: 3px;
-        BACKGROUND-COLOR: white
+    td{
+        border:solid black 1px;
     }
-    
-    tr {
-        border-collapse: collapse;
-        HEIGHT: 18px;
-        FONT-WEIGHT: normal;
-        TEXT-ALIGN: left;
-        PADDING-LEFT: 4px;
-        PADDING-RIGHT: 3px;
-        BACKGROUND-COLOR: #e6f6f6
-    }
-    
-    table {
-        border-collapse: collapse;
+    tr{
+        border:solid black 1px;
     }
 </style>
 <script>
@@ -36,26 +20,35 @@
         body = document.querySelector(`body`)
         var submit = document.querySelector(`#button input`)
         var input = document.querySelector(`#textbox input`)
-        for (let i = 0; i < 100; i++) {
+
             var min = 0
             var max = 100
 
             function randomNumber(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
-        }
 
         var table = []
         submit.addEventListener(`click`, (e) => {
             console.log('success!!')
 
-            for (let i = 0; i <= parseInt(input.value); i++) {
+            for (let i = 0; i < parseInt(input.value); i++) {
                 table[i] = []
                 var row = document.createElement('tr');
-                for (v in table) {
+                for (let v = 0; v < parseInt(input.value); v++) {
                     var cell = document.createElement(`td`)
                     table[i][v] = randomNumber(min, max)
-                    cell.innerHTML = table[i][v]
+                    if(table[i][v] % 2 === 0){
+                    cell.innerHTML += table[i][v]
+                    cell.style.backgroundColor ="blue";
+                    }
+                    else if(table[i][v] % 3 ===0){
+                        cell.innerHTML += table[i][v]
+                        cell.style.backgroundColor ="red";
+                    }
+                    else{
+                        cell.innerHTML+=table[i][v]
+                    }
                     row.appendChild(cell);
                     //console.log(table[i][v])
                 }
