@@ -7,22 +7,64 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action ="#">//link goes to action
+
+    <form method="POST" action ="https://se251-node.herokuapp.com/w6">
         <label for ="first">First Name</label>
         <input type ="text" id= "first" name="first" title="input first name" placeholder="First Name" required
         oninvalid = "this.setCustomValidity('Enter First Name Here')"
-        oninput = "this.setCustomValidity('')">
+        oninput = "this.setCustomValidity('')"  onkeyup="this.value = this.value.toUpperCase();">
+    </br>
+        <label for ="last">Last Name</label>
+        <input type ="text" id= "last" name="last" title="input last name" placeholder="Last Name" required
+        oninvalid = "this.setCustomValidity('Enter Last Name Here')"
+        oninput = "this.setCustomValidity('')"  onkeyup="this.value = this.value.toUpperCase();">
+    </br>
+
+    <label for ="email">Email</label>
+    <input type ="email" name="email" title="Enter email " placeholder="Email Address"
+    onkeyup="this.value = this.value.toUpperCase();" required>
+    </br>
+
+    <label for ="emailC">Email Confirmation</label>
+    <input type ="email" name="emailC" title="Confirm Email" placeholder="Email Confirmation "
+    onkeyup="this.value = this.value.toUpperCase();">
+    
+    </br>
+        <button id="submitBtn" type="submit" name="btnSubmit">Submit</button>
         
-        <button type="submit" name="Submit">Submit</button>
+        <script>
+        var fname=document.querySelector(`#first`)
+        var lname=document.querySelector(`#last`)
+
+        var form=document.querySelector(`form`)
+        var email=document.querySelector(`input[name='email']`)
+        var emailC =document.querySelector(`input[name='emailC`)
+        var submit=document.querySelector(`#submitBtn`)
+        </script>
 
         <script>
-        var first =document.querySelector(`#first`)
-        first.addEventListener(`keyup`,(e)=>{
-            e.target.setCustomValidity('Enter First Name Here')
-            e.target.reportValidity()
-        }
         
-        )
+        form.addEventListener(`change`,(e)=>{
+            e.preventDefault()
+            submit.addEventListener(`click`,(e)=>{  
+                if(email.value != emailC.value || email.value==""){
+                    emailC.setCustomValidity('Confirm Email')
+                    emailC.reportValidity()  
+                }
+                else if(fname.value==""){
+                    fname.setCustomValidity(`Confirm First Name`)
+                    fname.setCustomValidity()
+                }
+                else if( lname.value ==""){
+                    lname.setCustomValidity(`Confirm Last Name`)
+                    lname.setCustomValidity()
+                }
+                else{
+                    form.submit()
+                }
+            }
+            )
+        })
         </script>
     </form>
 </body>
