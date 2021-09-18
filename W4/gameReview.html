@@ -1,0 +1,107 @@
+<html>
+<title>Game Reviews</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type='text/css'>
+        .imgframe {
+            background: black;
+            padding: 12px;
+            border: 1px solid #999;
+        }
+        
+        th {
+            padding-left: 30px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class='col-md-8'>
+                <h1>Game Reviews</h1>
+
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Game Title</th>
+                            <th>Console</th>
+                            <th>Rating</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reviewsBody">
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class='col-md-4' style='margin-top:200px;'>
+                <h2 id="gameTitle"></h2>
+                <img id='gameImage' src='Images/overwatch.jpg'>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    revBody = document.querySelector(`#reviewsBody`)
+
+    
+    fetch('https://se251-node.herokuapp.com/w3')
+        .then(response => response.json())
+        .then(reviews => {
+    for (let i = 0; i < reviews.length; i++) {
+        row = document.createElement("tr")
+        var img = document.querySelector(`#gameImage`)
+        var imgTitle = document.querySelector(`#gameTitle`)
+
+        for (v in reviews[i]) {
+           
+            cell = document.createElement("td")
+
+            if(v =="gameTitle"){
+                var a = document.createElement(`a`)
+                var imgN=reviews[i]["imageName"]
+                a.dataset.src=imgN
+               
+                a.innerHTML= reviews[i][v]
+                cell.appendChild(a)
+            }
+            else{
+
+            cell.innerHTML = reviews[i][v]
+            }
+            row.appendChild(cell)
+
+
+        }
+        revBody.appendChild(row);
+
+
+    }
+
+    var eg=document.querySelectorAll("a")
+    for(let i=0; i<eg.length; i++){
+        eg[i].addEventListener('click', (e) => {
+         img.src=`images/${eg[i].dataset.src}`
+                
+
+            })
+    }
+    
+})
+
+</script>

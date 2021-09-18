@@ -30,8 +30,9 @@
 			var start1=0;
 			var start2=0;
 			var start3=0;
-
+			var cnt=0
             for (let i = 0; i <100; i++) {
+				cnt+=1
 				var ind=people[i]
 				var sal=ind.salary
 				var job=ind.jobTitle
@@ -42,14 +43,19 @@
 					var name1=ind.name
 					var fname1=name1.first
 					var lname1=name1.last
-					var job1=ind.jobTitle	
+					var job1=ind.jobTitle
+					var total1=parseInt(sal++)
+					
+					
 				}	
+				
 				else if(start2 < sal && job=="Database Analyst"){
 					start2=sal
 					var name2=ind.name
 					var fname2=name2.first
 					var lname2=name2.last
 					var job2=ind.jobTitle
+					var total2=sal++
 	
 				}
 				else if(start3 < sal && job=="Software Developer"){
@@ -58,16 +64,21 @@
 					var fname3=name3.first
 					var lname3=name3.last
 					var job3=ind.jobTitle	
+					var total3=sal++
 				}
+				
 			}
+			console.log(total1);
 			var tempDiv = document.querySelector(`#main-content`)
-
+			var avg1=total1/cnt
+			var avg2=total2/cnt
+			var avg3=total3/cnt
 			var web=document.querySelector(`#database-analyst-area`)
-			web.innerHTML+=fname1+lname1+start1
+			web.innerHTML+=fname1+lname1+start1+avg1
 			var data=document.querySelector(`#web-developer-area`)
-			data.innerHTML+=fname2+lname2+start2
+			data.innerHTML+=fname2+lname2+start2+avg2
 			var se=document.querySelector(`#software-developer-area`)
-			se.innerHTML+=fname3+lname3+start3
+			se.innerHTML+=`<p>${fname3} ${lname3} ${start3} ${avg3}`
 		
 		})
 		
@@ -82,7 +93,7 @@
 		<section id="database-analyst-area" >
 			<h2>Database Analyst | Highest Paid</h2>
 			<h3>First Name:</h3>
-			<div id="fname1" class="first"></div>
+			<div class="first"></div>
 			<h3>Last Name:</h3>
 			<div class="last"><!--The last name goes here--></div>
 			<h3>Salary:</h3>
