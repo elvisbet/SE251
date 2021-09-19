@@ -31,42 +31,58 @@
 			var start2=0;
 			var start3=0;
 			var cnt=0
+			var sbt=document.querySelector(`#search-submit`)
+			var fname=document.querySelector(`#first-name`)
+			var lname=document.querySelector(`#last-name`)
+			var sOutput=document.querySelector(`#search-output`)
             for (let i = 0; i <100; i++) {
 				cnt+=1
 				var ind=people[i]
+				var p =ind.name
+				sbt.addEventListener(`click`, (e) => {
+					var v=people[i].name
+					//console.log(v)
+					if(fname.value==v.first &&lname.value==v.last){
+						nameF=v.first
+						nameL=v.last
+						psal=people[i].salary
+						pjob=people[i].jobTitle
+
+						sOutput.innerHTML+=`<p>Name:${nameF} ${nameL}</p>
+						<p>Salary:${psal}</p> <p>Job Title:${pjob} </p>`
+					}
+				
+				})
+				
 				var sal=ind.salary
 				var job=ind.jobTitle
 				
 				//start=people[0].salary				
 				if(start1 < sal && job=="Web Developer"){
 					start1=sal
-					var name1=ind.name
-					var fname1=name1.first
-					var lname1=name1.last
+					var fname1=p.first
+					var lname1=p.last
 					var job1=ind.jobTitle
-					var total1=parseInt(sal++)
-					
-					
+					var total1=sal++
+								
 				}	
 				
 				else if(start2 < sal && job=="Database Analyst"){
-					start2=sal
-					var name2=ind.name
-					var fname2=name2.first
-					var lname2=name2.last
+					start2=sal		
+					var fname2=p.first
+					var lname2=p.last
 					var job2=ind.jobTitle
 					var total2=sal++
 	
 				}
 				else if(start3 < sal && job=="Software Developer"){
 					start3=sal
-					var name3=ind.name	
-					var fname3=name3.first
-					var lname3=name3.last
+					var fname3=p.first
+					var lname3=p.last
 					var job3=ind.jobTitle	
-					var total3=sal++
+					var total3=start3++
 				}
-				
+
 			}
 			console.log(total1);
 			var tempDiv = document.querySelector(`#main-content`)
@@ -74,16 +90,58 @@
 			var avg2=total2/cnt
 			var avg3=total3/cnt
 			var web=document.querySelector(`#database-analyst-area`)
-			web.innerHTML+=fname1+lname1+start1+avg1
+			web.innerHTML+=`<p>${fname1}</p> <p> ${lname1}</p> <p>${start1}</p> <p>${avg1}</p>`
 			var data=document.querySelector(`#web-developer-area`)
-			data.innerHTML+=fname2+lname2+start2+avg2
+			data.innerHTML+=`<p>${fname2}</p> <p> ${lname2}</p> <p>${start2}</p> <p>${avg2}</p>`
 			var se=document.querySelector(`#software-developer-area`)
-			se.innerHTML+=`<p>${fname3} ${lname3} ${start3} ${avg3}`
+			se.innerHTML+=`<p>${fname3}</p> <p> ${lname3}</p> <p>${start3}</p> <p>${avg3}</p>`
+			var anList=document.querySelector(`#list-database-analyst`)
+			var webList=document.querySelector(`#list-web-developer`)
+			var seList=document.querySelector(`#list-software-developers`)
+			var outList=document.querySelector(`#list-output`)
+
+			anList.addEventListener(`click`, (e) => {
+				while(outList.firstChild){
+    				outList.removeChild(outList.firstChild);
+				}
+				for(let i=0 ;i<100 ;i++){
+					if(people[i].jobTitle == "Database Analyst"){
+					var n=people[i].name
+					outList.innerHTML+=`<p>Name:${n.first} ${n.last}</br> Salary:${people[i].salary}</p>`
+					}
+				}
+		
+		})
+			webList.addEventListener(`click`, (e) => {
+				while(outList.firstChild){
+    				outList.removeChild(outList.firstChild);
+				}
+				for(let i=0 ;i<100 ;i++){
+					if(people[i].jobTitle == "Web Developer"){
+					var n=people[i].name
+					outList.innerHTML+=`<p>Name:${n.first} ${n.last}</br> Salary:${people[i].salary}</p>`
+					}
+				}
+		
+		})
+			seList.addEventListener(`click`, (e) => {
+				while(outList.firstChild){
+    				outList.removeChild(outList.firstChild);
+				}
+				for(let i=0 ;i<100 ;i++){
+					if(people[i].jobTitle == "Software Developer"){
+					var n=people[i].name
+					outList.innerHTML+=`<p>Name:${n.first} ${n.last}</br> Salary:${people[i].salary}</p>`
+					}
+				}
 		
 		})
 		
-	;
+	})
+		
 
+		
+	
 		</script>
 		<!--
 			Find the highest paid employee for each job listed below
@@ -119,7 +177,7 @@
 		<section  id="software-developer-area">
 			<h2>Software Developer | Highest Paid </h2>
 			<h3>First Name:</h3>
-			<div class="first"></div>
+			<div id="f1" class="first"></div>
 			<h3>Last Name:</h3>
 			<div class="last"></div>
 			<h3>Salary:</h3>
@@ -128,7 +186,10 @@
 			<h3 class="average"></h3>
 		</section >
 	</div>
-	
+	<script>
+
+
+	</script>
 	<!--Use the form inputs to search for employees. Then display the employees information in the #output <div>-->
 	<section  id="search-area">
 		<input type="text" placeholder="First Name" id="first-name">
@@ -141,7 +202,9 @@
 			</div>
 		</section>
 	</section >
+<script>
 
+</script>
 	<!--Use the button inputs to display a list of everyone in that job-->
 	<section  id="list-area">
 		<input type="button" value="List Database Analysts" id="list-database-analyst">
