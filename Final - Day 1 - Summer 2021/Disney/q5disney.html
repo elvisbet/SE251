@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Disney</title>
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+	<body>
+	<nav>
+			<input type="button" value="Mickey Mouse" id="mickey" data-idx="1" />
+			<input type="button" value="Donald Duck" id="donald" data-idx="2" />
+			<input type="button" value="Goofy" id="goofy" data-idx="3" />
+		</nav>
+		<div id="wrapper">
+			<section>
+				<h1>Disney Characters</h1>
+				<img src="images/placeholder.png" alt="character" />
+				<h2>Character Name</h2>
+				<q>Quote Goes Here</q>
+			</section>
+		</div>
+		
+	<script>
+		//--Javascript goes here--
+		var buttons =document.querySelectorAll('input[type="button"]');
+		var image =document.querySelector('img');
+		var h2 = document.querySelector('h2');
+		var quote =document.querySelector('q');
+
+		console.log(buttons)
+
+		for(let i=0; i< buttons.length;i++)
+		{
+			buttons[i].addEventListener("click", function(){
+			fetch('http://ict.neit.edu/evanrense/disney/disney.php?character='+(i+1))
+				.then((response) => {
+					return response.json();
+				})
+				.then((data) => {
+					console.log(data);
+					
+					
+					h2.innerHTML = data.name;
+					quote.innerHTML = data.quote;
+					image.src = data.image;
+
+				});
+			})
+		}
+	</script>	
+	</body>
+	
+</html>
+
