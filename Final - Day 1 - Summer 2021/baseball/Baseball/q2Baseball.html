@@ -28,6 +28,30 @@
 			{team:"Toronto", wins: 66, losses:77, percentage: 0.462}
 			
 		];
+		var table=document.querySelector(`.table`)
+		var content=document.querySelector(`#content`)
+		for(let i=0 ;i <5 ;i++){
+			//console.log(standings[i])
+			var row=document.createElement('tr')
+			for (t in standings[i]){
+				//console.log(standings[i].percentage)
+				var cell=document.createElement('td')
+				
+				cell.innerHTML+=standings[i][t]
+				if(standings[i].percentage > 0.500){
+					cell.style.backgroundColor ="blue";
+				}
+				else{
+					cell.style.backgroundColor ="red";
+				}
+				row.appendChild(cell)
+			}
+			
+			table.appendChild(row)
+		}
+		
+
+		
 	
 	</script>
 </body>
