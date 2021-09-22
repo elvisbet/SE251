@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Disney</title>
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+	<body>
+	<nav>
+			<select>
+				<option value="0">Mickey</option>
+				<option value="1">Goofy</option>
+				<option value="2">Donald</option>
+			</select>
+		</nav>
+		<div id="wrapper">
+			<section>
+				<h1>Disney Characters</h1>
+				<img src="images/placeholder.png" alt="character" />
+				<p id="name">Character Name</p>
+				<p id=quote><i>Quote Goes Here</i></p>
+			</section>
+		</div>
+		
+	<script>
+		var sel=document.querySelector(`select`,`option`)
+		var img=document.querySelector(`img`)
+		var cname=document.querySelector(`#name`)
+		var quote=document.querySelector(`#quote`)
+		var a =document.createAttribute(`a`)
+		fetch('https://se251-node.herokuapp.com/final')
+        .then(response => response.json())
+        .then(chr => {
+			
+			for(var i=0;i<3;i++){
+				console.log(chr[i].name)
+				console.log(chr[i].image)
+				var opt=document.querySelectorAll(`option`)
+				console.log(sel[i])
+
+				
+				sel.addEventListener('click', (e) => {
+					console.log(sel[1].value)
+				if(sel.value==0){
+					while(quote.firstChild){
+    				quote.removeChild(quote.firstChild);
+					}
+					img.src=`http://ict.neit.edu/evanrense/disney/images/mickey.png`
+					cname.innerHTML =chr[0].name
+					quote.innerHTML=chr[0].quote
+					//console.log(cname)
+				}
+				else if(sel.value==2){
+					while(quote.firstChild){
+    				quote.removeChild(quote.firstChild);
+					}
+					img.src=`http://ict.neit.edu/evanrense/disney/images/donald.png`
+					cname.innerHTML =chr[1].name
+					quote.innerHTML+=chr[1].quote
+					//console.log(cname)
+				}
+				else{
+					while(quote.firstChild){
+    				quote.removeChild(quote.firstChild);
+					}
+					img.src=`http://ict.neit.edu/evanrense/disney/images/goofy.png`
+					cname.innerHTML =chr[2].name
+					quote.innerHTML+=chr[2].quote
+				}
+				
+			
+				
+			})
+			}
+
+		
+	})
+		
+	
+	</script>	
+	</body>
+	
+</html>
+
